@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  body,
+  button,
+  input {
+    font-family: "Josefin Sans", sans-serif;
+  }
+  /* Custom scrollbar styles */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #ffffff39;
+    width: 0.1rem;
+    border-radius: 1rem;
+  }
+  input::selection {
+    background-color: #9a86f3; /* Change background color of selected text */
+  }
+  input:focus {
+    outline: none;
+  }
+  .emoji >.emoji-picker-react {
+    position: absolute;
+    top: -350px;
+    background-color: #080420;
+    box-shadow: 0 5px 10px #9a86f3;
+    border-color: #9a86f3;
+  }
+  /* .emoji-categories button {
+    filter: contrast(0);
+  }
+  .emoji-search {
+    background-color: transparent;
+    border-color: #9186f3;
+  }
+  .emoji-group::before {
+    background-color: #080420;
+  } */
+
+
+/* For WebKit browsers (Chrome, Safari, etc.) */
+.emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+.emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Background of the track (scrollbar container) */
+  border-radius: 5px;
+}
+
+.emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #9a86f3; /* Color of the scroll thumb */
+  border-radius: 5px; /* Rounded edges of the scrollbar thumb */
+}
+
+.emoji-picker-react .emoji-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darken on hover */
+}
+
+}
