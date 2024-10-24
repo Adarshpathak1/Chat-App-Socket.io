@@ -6,12 +6,10 @@ import axios from "axios";
 import {Buffer} from "buffer";
 import Button from "../components/Button";
 import { setAvatarRoute } from "../utils/ApiRoutes";
-require("dotenv").config();
-
+const apikey = import.meta.env.VITE_APIKEY;
 // import multiavatar from "@multiavatar/multiavatar/esm";
 
 const SetAvatar = () => {
-  const apikey = process.env.APIKEY;
   const api = "https://api.multiavatar.com/45678945";
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);

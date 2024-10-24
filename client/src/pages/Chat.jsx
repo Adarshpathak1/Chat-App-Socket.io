@@ -31,16 +31,22 @@ const Chat = () => {
   useEffect(() => {
     if (currentUser) {
       socket.current = io(host);
-      console.log("Socket connected with ID:", socket.current.id);
+      socket.current.on("connect", () => {
+        console.log("Socket connected with ID:", socket.current.id); // Now you can access the correct ID
+        socket.current.emit("add-user", currentUser._id);
+      });
 
-      socket.current.emit("add-user", currentUser._id);
+      socket.current.on("connect_error", (err) => {
+        console.error("Connection error:", err.message);
+      });
     }
+
     return () => {
       if (socket.current) {
         socket.current.disconnect();
         console.log("Socket disconnected");
       }
-    }
+    };
   },[currentUser])
 
   useEffect(() => {
@@ -57,14 +63,16 @@ const Chat = () => {
     };
     fetchAllUser();
   }, [currentUser, navigate]);
+  
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
-  useEffect(() => {
-    if (socket.current) {
-      socket.current.on("msg-receive", (data) => setCurrentChat([...currentChat, data.message]));
-    }
-  }, [socket.current, currentChat]);
+
+  // useEffect(() => {
+  //   if (socket.current) {
+  //     socket.current.on("msg-receive", (data) => setCurrentChat([...currentChat, data.message]));
+  //   }
+  // }, [socket.current, currentChat]);
   
   return (
     <>

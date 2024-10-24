@@ -47,9 +47,13 @@ io.on("connection", (socket) => {
     socket.on("send-msg", (data) => {
         // console.log("Message sent:", data);
         const sendUserSocket = onlineUsers.get(data.to);
+
         if (sendUserSocket) {
             socket.to(sendUserSocket).emit("msg-receive", data.message);
+        } else {
+            console.log("Receiver socket not found");
         }
+
     })
     socket.on("disconnect", () => {
         console.log("client disconnected",socket.id)
